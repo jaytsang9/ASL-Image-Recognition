@@ -16,6 +16,7 @@ def main():
     tab1, tab2, tab3 = st.tabs(tab_names)
 
     with tab1:
+
         layout_tabs(tab_names[0])
 
     with tab2:
@@ -41,15 +42,17 @@ def layout_tabs(tab):
     col1, col2 = st.columns(2)
     file_types = ['jpg', 'jpeg', 'png']
     upload = None
-    image = None
-    if tab == "Take Photo":
-        upload = st.camera_input("Take a picture")
-    if tab == "Upload":
-        upload = st.file_uploader("Choose a file", type=file_types)   
+    with st.container():
+        if tab == "Take Photo":
+            upload = st.camera_input("")
+        if tab == "Upload":
+            upload = st.file_uploader("", type=file_types)   
     if upload is not None:    
-        image = Image.open(upload).convert('RGB')
-        st.image(image, caption=f'{upload.name}', width=200)
-    make_predictions(image)
+        with col1:
+            image = Image.open(upload).convert('RGB')
+            st.image(image, caption=f'{upload.name}', width=200)
+        with col2:
+            make_predictions(image)
 
 if __name__ == '__main__':
     main()
