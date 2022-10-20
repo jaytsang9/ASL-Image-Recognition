@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 def main():
     st.title('ASL Alphabet Image Classifier')
 
-    tab_names = ["Take Photo", "Upload", "Learn ASL"]
+    tab_names = ["Take Photo", "Upload Image", "Learn ASL"]
     tab1, tab2, tab3 = st.tabs(tab_names)
 
     with tab1:
