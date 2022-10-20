@@ -1,12 +1,8 @@
 import streamlit as st
-import torchvision
-import torch
-import os
 import time
 import numpy as np
 from PIL import Image
 from neural_net import prediction
-from torchvision import transforms
 from matplotlib import pyplot as plt
 
 def main():
