@@ -1,21 +1,30 @@
 import streamlit as st
-from PIL import Image
 import torchvision
-from torchvision import transforms
 import torch
 import os
-from neural_net import prediction
 import time
 import numpy as np
-
+from PIL import Image
+from neural_net import prediction
+from torchvision import transforms
 from matplotlib import pyplot as plt
 
-st.title('ASL Alphabet Image Classifier')
+def main():
+    st.title('ASL Alphabet Image Classifier')
 
-tab_names = ["Take Photo", "Upload", "Learn ASL"]
-tab1, tab2, tab3 = st.tabs(tab_names)
+    tab_names = ["Take Photo", "Upload", "Learn ASL"]
+    tab1, tab2, tab3 = st.tabs(tab_names)
 
-file_types = ['jpg', 'jpeg', 'png']
+    with tab1:
+        layout_tabs(tab_names[0])
+
+    with tab2:
+        layout_tabs(tab_names[1])
+
+    with tab3:
+        st.header("Learn the American Sign Language Alphabet")
+        st.image("images/asl_alphabet.png", width=700)
+
 
 def make_predictions(img):
     labels, metrics = prediction(img) 
@@ -28,41 +37,19 @@ def make_predictions(img):
 
         st.success('Done!')
 
-def lay_columns(tab):
+def layout_tabs(tab):
+    col1, col2 = st.columns(2)
+    file_types = ['jpg', 'jpeg', 'png']
     upload = None
+    image = None
     if tab == "Take Photo":
         upload = st.camera_input("Take a picture")
     if tab == "Upload":
-        upload = st.file_uploader("Choose a file", type=file_types, accept_multiple_files=False)
-
+        upload = st.file_uploader("Choose a file", type=file_types)   
     if upload is not None:    
         image = Image.open(upload).convert('RGB')
-        st.image(image, caption=f'{upload.name}', width=128)
-        with st.sidebar:
-            make_predictions(image)
+        st.image(image, caption=f'{upload.name}', width=200)
+    make_predictions(image)
 
-with tab1:
-    #lay_columns(tab_names[0])
-    upload = st.camera_input("Take a picture")
-    if upload is not None:    
-        image = Image.open(upload).convert('RGB')
-        st.image(image, caption=f'{upload.name}', width=128)
-        with st.sidebar:
-            make_predictions(image)
-
-with tab2:
-    #lay_columns(tab_names[1])
-    upload = st.file_uploader("Choose a file", type=file_types, accept_multiple_files=False)
-
-    if upload is not None:    
-        image = Image.open(upload).convert('RGB')
-        st.image(image, caption=f'{upload.name}', width=128)
-        with st.sidebar:
-            make_predictions(image)
-
-with tab3:
-    st.header("Learn the American Sign Language Alphabet")
-    st.image("images/asl_alphabet.png", width=700)
-
-
-
+if __name__ == '__main__':
+    main()
