@@ -10,7 +10,7 @@ from matplotlib import pyplot as plt
 
 st.title('ASL Alphabet Image Classifier', anchor=None)
 
-tab1, tab2, tab3 = st.tabs(["Learn ASL", "Camera", "Upload"])
+tab1, tab2, tab3 = st.tabs(["Camera", "Upload","Learn ASL",])
 col1, col2 = st.columns(2)
 file_types = ['jpg', 'jpeg', 'png']
 
@@ -44,5 +44,5 @@ with tab2:
 
 with tab3:
     st.header("Learn the American Sign Language Alphabet")
-    st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
+    st.image("/images/asl_alphabet.png", width=200)
 
