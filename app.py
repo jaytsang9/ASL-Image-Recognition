@@ -41,7 +41,7 @@ def layout_tabs(tab):
     with st.container():
         if tab == "Take Photo":
             upload = st.camera_input("")
-        if tab == "Upload":
+        if tab == "Upload Image":
             upload = st.file_uploader("", type=file_types)   
     if upload is not None:    
         with col1:
