@@ -6,13 +6,12 @@ from neural_net import prediction
 from matplotlib import pyplot as plt
 
 def main():
-    st.title('ASL Alphabet Image Classifier')
+    st.title('ASL Image Classifier')
 
     tab_names = ["Take Photo", "Upload Image", "Learn ASL"]
     tab1, tab2, tab3 = st.tabs(tab_names)
 
     with tab1:
-
         layout_tabs(tab_names[0])
 
     with tab2:
@@ -25,7 +24,7 @@ def main():
 
 def make_predictions(img):
     labels, metrics = prediction(img) 
-    with st.spinner('Predicting...'):
+    with st.spinner('Analyzing...'):
         time.sleep(0.7)
         
         st.header('Top 3 Results')
@@ -49,6 +48,7 @@ def layout_tabs(tab):
             st.image(image, caption=f'{upload.name}', width=200)
         with col2:
             make_predictions(image)
+
 
 if __name__ == '__main__':
     main()
