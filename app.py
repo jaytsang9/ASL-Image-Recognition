@@ -3,7 +3,6 @@ import time
 import numpy as np
 from PIL import Image
 from neural_net import prediction
-from matplotlib import pyplot as plt
 
 def main():
     st.title('ASL Image Classifier')
