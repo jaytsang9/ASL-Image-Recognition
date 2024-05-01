@@ -1,11 +1,8 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: osx-64
-
-numpy=1.22.3=py310h1ad2b02_0
-numpy-base=1.22.3=py310h6d917f3_0
-pandas=1.4.3=py310he9d5cce_0
-pillow=9.2.0=py310hde71d04_1
-streamlit=1.11.0=py310hecd8cb5_0
-torch=1.12.0=pypi_0
-torchvision=0.13.0=pypi_0
+numpy
+pillow
+pandas
+streamlit
+torch==2.1.2
